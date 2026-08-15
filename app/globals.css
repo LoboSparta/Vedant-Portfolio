@@ -1,0 +1,95 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --font-display: "Manrope", system-ui, sans-serif;
+  --font-body: "Inter", system-ui, sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+  /* Offset anchor targets so the sticky navbar never covers a heading. */
+  scroll-padding-top: 96px;
+}
+
+body {
+  background-color: #f5f3ef;
+  color: #171717;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  /* Vertical video layouts must never cause sideways scrolling on phones. */
+  overflow-x: hidden;
+}
+
+::selection {
+  background-color: #171717;
+  color: #f5f3ef;
+}
+
+/* Visible, consistent keyboard focus across the whole site. */
+:focus-visible {
+  outline: 2px solid #171717;
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+@layer components {
+  .shell {
+    @apply mx-auto w-full max-w-shell px-5 sm:px-8 lg:px-12;
+  }
+
+  .label {
+    @apply font-sans text-[11px] uppercase tracking-[0.18em] text-muted;
+  }
+}
+
+/* Used when the work grid is re-filtered. */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.fade-in {
+  animation: fadeIn 0.45s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+/* Scroll reveal: content is always in the DOM, only opacity/transform animate. */
+.reveal {
+  opacity: 0;
+  transform: translateY(14px);
+  transition:
+    opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.reveal[data-visible="true"] {
+  opacity: 1;
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .reveal,
+  .reveal[data-visible="true"] {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    transition-duration: 0.001ms !important;
+  }
+}
