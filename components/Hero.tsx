@@ -4,7 +4,7 @@ import { experience, profile } from "@/data/site";
 
 export default function Hero() {
   return (
-    <section id="top" className="shell pb-14 pt-10 md:pb-20 md:pt-16">
+    <section id="top" className="shell pb-12 pt-8 md:pb-16 md:pt-12">
       <Reveal>
         <h1 className="font-display text-[clamp(2.5rem,10vw,5.75rem)] font-extrabold uppercase leading-[0.92] tracking-[-0.03em] text-ink">
           {profile.name}
@@ -12,8 +12,8 @@ export default function Hero() {
       </Reveal>
 
       <Reveal delay={80}>
-        <div className="mt-8 border-t border-line pt-6 md:mt-10">
-          <div className="grid gap-8 md:grid-cols-12 md:gap-10">
+        <div className="mt-6 border-t border-line pt-5 md:mt-8">
+          <div className="grid gap-7 md:grid-cols-12 md:gap-10">
             <div className="md:col-span-7">
               <p className="font-display text-xl font-semibold uppercase tracking-[0.06em] text-ink sm:text-2xl">
                 {profile.title}
@@ -22,12 +22,12 @@ export default function Hero() {
                 {profile.positioning}
               </p>
 
-              <div className="mt-8 flex flex-wrap items-center gap-3">
+              <div className="mt-7 flex flex-wrap items-center gap-3">
                 <a
                   href="#work"
                   className="rounded-full bg-ink px-6 py-3 text-sm font-medium text-paper transition-opacity duration-200 hover:opacity-85"
                 >
-                  View Work
+                  View Selected Work
                 </a>
                 <a
                   href="#contact"
@@ -40,20 +40,20 @@ export default function Hero() {
 
             {/* Portrait + current roles — factual, keeps the hero short and useful. */}
             <div className="md:col-span-5 md:border-l md:border-line md:pl-10">
-              {/* Deliberately small: it should sit beside the work, not above it. */}
-              <div className="w-[136px] overflow-hidden rounded-[3px] border border-line bg-card sm:w-[152px]">
+              {/* Sized to read as a deliberate part of the hero, not a thumbnail. */}
+              <div className="w-[150px] overflow-hidden rounded-[3px] border border-line bg-card sm:w-[180px]">
                 <Image
                   src="/images/vedant-thakur.jpg"
                   alt={profile.portraitAlt}
                   width={1000}
                   height={1250}
-                  sizes="152px"
+                  sizes="(min-width: 640px) 180px, 150px"
                   priority
                   className="h-auto w-full object-cover"
                 />
               </div>
 
-              <p className="label mt-8">Currently</p>
+              <p className="label mt-7">Currently</p>
               <ul className="mt-4 space-y-4">
                 {experience.map((item) => (
                   <li key={item.company}>
