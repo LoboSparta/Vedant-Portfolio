@@ -13,6 +13,8 @@ export const profile = {
   positioning:
     "Short-form editing · Advertising · AI-assisted creatives · Educational content",
   location: "India",
+  /** Alt text for the hero portrait (public/images/vedant-thakur.jpg). */
+  portraitAlt: "Portrait of Vedant Thakur",
 } as const;
 
 export const navLinks = [
@@ -121,10 +123,23 @@ export interface ContactLink {
 }
 
 export const contact: ContactLink[] = [
-  { label: "Email", value: "", href: "" }, // e.g. value: "you@email.com", href: "mailto:you@email.com"
-  { label: "LinkedIn", value: "", href: "" }, // e.g. value: "linkedin.com/in/handle", href: "https://..."
-  { label: "Instagram", value: "", href: "" }, // e.g. value: "@handle", href: "https://instagram.com/handle"
-  { label: "YouTube", value: "", href: "" }, // e.g. value: "youtube.com/@handle", href: "https://..."
+  {
+    label: "Email",
+    value: "vedantrthakur27@gmail.com",
+    href: "mailto:vedantrthakur27@gmail.com",
+  },
+  {
+    label: "LinkedIn",
+    value: "linkedin.com/in/vedant-thakur-027d",
+    href: "https://www.linkedin.com/in/vedant-thakur-027d",
+  },
+  {
+    label: "Phone",
+    value: "+91 93729 13003",
+    href: "tel:+919372913003",
+  },
+  // To add more (Instagram, YouTube, …) copy the shape above. An entry left
+  // with empty strings will render as a clearly marked placeholder instead.
 ];
 
 /** Used for metadata / Open Graph. Replace once you know the live URL. */

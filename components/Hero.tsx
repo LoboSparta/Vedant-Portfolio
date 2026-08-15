@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Reveal from "./Reveal";
 import { experience, profile } from "@/data/site";
 
@@ -37,9 +38,22 @@ export default function Hero() {
               </div>
             </div>
 
-            {/* Current roles — factual, keeps the hero short and useful. */}
+            {/* Portrait + current roles — factual, keeps the hero short and useful. */}
             <div className="md:col-span-5 md:border-l md:border-line md:pl-10">
-              <p className="label">Currently</p>
+              {/* Deliberately small: it should sit beside the work, not above it. */}
+              <div className="w-[136px] overflow-hidden rounded-[3px] border border-line bg-card sm:w-[152px]">
+                <Image
+                  src="/images/vedant-thakur.jpg"
+                  alt={profile.portraitAlt}
+                  width={1000}
+                  height={1250}
+                  sizes="152px"
+                  priority
+                  className="h-auto w-full object-cover"
+                />
+              </div>
+
+              <p className="label mt-8">Currently</p>
               <ul className="mt-4 space-y-4">
                 {experience.map((item) => (
                   <li key={item.company}>
