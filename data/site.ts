@@ -11,7 +11,7 @@ export const profile = {
   name: "Vedant Thakur",
   title: "Video Editor & Content Creator",
   positioning:
-    "Short-form editing · Advertising · AI-assisted creatives · Educational content",
+    "Short-form content · Advertising · Motion Graphics · Educational Content",
   location: "India",
   /** Alt text for the hero portrait (public/images/vedant-thakur.jpg). */
   portraitAlt: "Portrait of Vedant Thakur",
