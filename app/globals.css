@@ -5,32 +5,33 @@
 :root {
   --font-display: "Manrope", system-ui, sans-serif;
   --font-body: "Inter", system-ui, sans-serif;
+  --color-night: #0d0f10;
+  --color-bone: #f4f0e8;
+  --color-amber: #f4ad3d;
 }
 
 html {
   scroll-behavior: smooth;
-  /* Offset anchor targets so the sticky navbar never covers a heading. */
   scroll-padding-top: 96px;
+  background: var(--color-night);
 }
 
 body {
-  background-color: #f5f3ef;
-  color: #171717;
+  background-color: var(--color-night);
+  color: var(--color-bone);
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
-  /* Vertical video layouts must never cause sideways scrolling on phones. */
   overflow-x: hidden;
 }
 
 ::selection {
-  background-color: #171717;
-  color: #f5f3ef;
+  background-color: var(--color-amber);
+  color: var(--color-night);
 }
 
-/* Visible, consistent keyboard focus across the whole site. */
 :focus-visible {
-  outline: 2px solid #171717;
-  outline-offset: 3px;
+  outline: 2px solid var(--color-amber);
+  outline-offset: 4px;
   border-radius: 2px;
 }
 
@@ -40,33 +41,33 @@ body {
   }
 
   .label {
-    @apply font-sans text-[11px] uppercase tracking-[0.18em] text-muted;
+    @apply font-sans text-[11px] uppercase tracking-[0.2em] text-muted;
   }
 }
 
-/* Used when the work grid is re-filtered. */
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(8px);
-  }
-  to {
-    opacity: 1;
-    transform: none;
-  }
+/* Page-level atmosphere: subtle grain-like lines and warm light, without assets. */
+.site-atmosphere {
+  position: relative;
+  isolation: isolate;
 }
 
-.fade-in {
-  animation: fadeIn 0.45s cubic-bezier(0.22, 1, 0.36, 1) both;
+.site-atmosphere::before {
+  content: "";
+  position: fixed;
+  z-index: -1;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.14;
+  background-image: linear-gradient(rgba(255,255,255,.025) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.018) 1px, transparent 1px);
+  background-size: 44px 44px;
+  mask-image: linear-gradient(to bottom, black, transparent 76%);
 }
 
-/* Scroll reveal: content is always in the DOM, only opacity/transform animate. */
+/* Scroll reveal: content remains in the DOM and becomes visible without JS. */
 .reveal {
   opacity: 0;
-  transform: translateY(14px);
-  transition:
-    opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1),
-    transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+  transform: translateY(18px);
+  transition: opacity .75s cubic-bezier(.22,1,.36,1), transform .75s cubic-bezier(.22,1,.36,1);
 }
 
 .reveal[data-visible="true"] {
@@ -74,22 +75,66 @@ body {
   transform: none;
 }
 
+.fade-in {
+  animation: fadeIn .55s cubic-bezier(.22,1,.36,1) both;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: none; }
+}
+
+@keyframes marqueeScroll {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+@keyframes heroFloat {
+  0%, 100% { transform: translate3d(0, 0, 0) rotate(-2deg); }
+  50% { transform: translate3d(0, -10px, 0) rotate(1deg); }
+}
+
+@keyframes pulseDot {
+  0%, 100% { opacity: .45; transform: scale(.85); }
+  50% { opacity: 1; transform: scale(1); }
+}
+
+.hero-kicker-dot { animation: pulseDot 1.8s ease-in-out infinite; }
+.hero-float { animation: heroFloat 8s ease-in-out infinite; }
+
+.marquee-viewport {
+  overflow: hidden;
+  border-top: 1px solid #303436;
+  border-bottom: 1px solid #303436;
+  background: rgba(255,255,255,.018);
+}
+
+.marquee-track {
+  display: flex;
+  width: max-content;
+  animation: marqueeScroll 34s linear infinite;
+}
+
+.marquee-viewport:hover .marquee-track { animation-play-state: paused; }
+
+.marquee-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 1.2rem;
+  padding: 1.1rem 1.5rem;
+  white-space: nowrap;
+  font-family: var(--font-display);
+  font-size: clamp(.78rem, 1.5vw, 1rem);
+  font-weight: 700;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+}
+
+.marquee-star { color: var(--color-amber); font-size: 1.25rem; }
+
 @media (prefers-reduced-motion: reduce) {
-  html {
-    scroll-behavior: auto;
-  }
-
-  .reveal,
-  .reveal[data-visible="true"] {
-    opacity: 1;
-    transform: none;
-    transition: none;
-  }
-
-  *,
-  *::before,
-  *::after {
-    animation-duration: 0.001ms !important;
-    transition-duration: 0.001ms !important;
-  }
+  html { scroll-behavior: auto; }
+  .reveal, .reveal[data-visible="true"] { opacity: 1; transform: none; transition: none; }
+  .marquee-track, .hero-float, .hero-kicker-dot { animation: none !important; }
+  *, *::before, *::after { animation-duration: .001ms !important; transition-duration: .001ms !important; }
 }
