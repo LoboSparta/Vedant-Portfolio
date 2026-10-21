@@ -6,6 +6,7 @@ import Footer from "@/components/Footer";
 import Hero from "@/components/Hero";
 import Navbar from "@/components/Navbar";
 import ProjectGrid from "@/components/ProjectGrid";
+import LongFormCollection from "@/components/LongFormCollection";
 import Tools from "@/components/Tools";
 
 export default function HomePage() {
@@ -15,6 +16,7 @@ export default function HomePage() {
       <main>
         <Hero />
         <ProjectGrid />
+        <LongFormCollection />
         <Experience />
         <CourseSection />
         <About />
