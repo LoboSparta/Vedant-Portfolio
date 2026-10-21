@@ -4,33 +4,27 @@ import { about, profile } from "@/data/site";
 
 export default function About() {
   return (
-    <section id="about" className="shell scroll-mt-24 py-14 md:py-20">
-      <SectionHeading label="About" title="About" />
-
-      <div className="mt-10 grid gap-8 md:mt-12 md:grid-cols-12 md:gap-10">
+    <section id="about" className="shell scroll-mt-24 py-16 md:py-24">
+      <SectionHeading label="04 / Behind the edits" title="More than a cut." />
+      <div className="mt-10 grid gap-10 md:mt-14 md:grid-cols-12 md:gap-14">
         <Reveal className="md:col-span-8">
-          <div className="max-w-2xl space-y-5">
-            {about.paragraphs.map((paragraph) => (
-              <p key={paragraph.slice(0, 24)} className="text-base leading-relaxed text-ink/85 sm:text-[17px]">
-                {paragraph}
-              </p>
-            ))}
+          <div className="max-w-3xl space-y-5">
+            {about.paragraphs.map((paragraph) => <p key={paragraph.slice(0, 24)} className="text-base leading-[1.85] text-ink/80 sm:text-lg">{paragraph}</p>)}
           </div>
         </Reveal>
-
-        <Reveal delay={80} className="md:col-span-4">
-          <dl className="md:border-l md:border-line md:pl-10">
-            <div className="border-t border-line py-4 md:border-t-0 md:pt-0">
-              <dt className="label">Focus</dt>
-              <dd className="mt-2 text-sm text-ink">Short-form vertical video</dd>
+        <Reveal delay={90} className="md:col-span-4">
+          <dl className="border-t border-line">
+            <div className="border-b border-line py-5">
+              <dt className="label">Creative focus</dt>
+              <dd className="mt-2 font-display text-lg font-semibold text-ink">Short-form / Long-form / Ads</dd>
             </div>
-            <div className="border-t border-line py-4">
+            <div className="border-b border-line py-5">
               <dt className="label">Experience</dt>
-              <dd className="mt-2 text-sm text-ink">2+ years hands-on editing</dd>
+              <dd className="mt-2 font-display text-lg font-semibold text-ink">2+ years hands-on editing</dd>
             </div>
-            <div className="border-t border-line py-4">
+            <div className="border-b border-line py-5">
               <dt className="label">Based in</dt>
-              <dd className="mt-2 text-sm text-ink">{profile.location}</dd>
+              <dd className="mt-2 font-display text-lg font-semibold text-ink">{profile.location}</dd>
             </div>
           </dl>
         </Reveal>
