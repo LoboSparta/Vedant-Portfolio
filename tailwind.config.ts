@@ -9,22 +9,23 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        paper: "#F5F3EF",
-        ink: "#171717",
-        muted: "#6B6B6B",
-        card: "#FFFFFF",
-        line: "#DEDBD5",
-        accent: "#8A8175",
+        paper: "#0D0F10",
+        ink: "#F4F0E8",
+        muted: "#A2A19D",
+        card: "#171A1B",
+        line: "#303436",
+        accent: "#F4AD3D",
       },
       fontFamily: {
         sans: ["var(--font-body)", "system-ui", "sans-serif"],
         display: ["var(--font-display)", "system-ui", "sans-serif"],
       },
-      maxWidth: {
-        shell: "1240px",
-      },
+      maxWidth: { shell: "1320px" },
       transitionTimingFunction: {
         editorial: "cubic-bezier(0.22, 1, 0.36, 1)",
+      },
+      boxShadow: {
+        amber: "0 0 0 1px rgba(244,173,61,.18), 0 16px 50px rgba(244,173,61,.08)",
       },
     },
   },
