@@ -3,33 +3,51 @@
 @tailwind utilities;
 
 :root {
-  --font-display: "Manrope", system-ui, sans-serif;
+  --font-display: "Bricolage Grotesque", "Manrope", system-ui, sans-serif;
   --font-body: "Inter", system-ui, sans-serif;
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+  /* Set from the Navbar's scroll handler: scroll distance (px, capped) and
+     page progress (0–1). Used for the progress line and hero parallax. */
+  --sy: 0;
+  --sp: 0;
 }
 
 html {
   scroll-behavior: smooth;
   /* Offset anchor targets so the sticky navbar never covers a heading. */
   scroll-padding-top: 96px;
+  background-color: #0b0b0d;
+  color-scheme: dark;
 }
 
 body {
-  background-color: #f5f3ef;
-  color: #171717;
+  background-color: #0b0b0d;
+  color: #eeeae2;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
-  /* Vertical video layouts must never cause sideways scrolling on phones. */
+  /* Never cause sideways scrolling on phones. */
   overflow-x: hidden;
 }
 
+/* Fine film-grain over the whole page: static, very low opacity. */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  pointer-events: none;
+  opacity: 0.045;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
 ::selection {
-  background-color: #171717;
-  color: #f5f3ef;
+  background-color: #f2a93b;
+  color: #0b0b0d;
 }
 
 /* Visible, consistent keyboard focus across the whole site. */
 :focus-visible {
-  outline: 2px solid #171717;
+  outline: 2px solid #f2a93b;
   outline-offset: 3px;
   border-radius: 2px;
 }
@@ -40,11 +58,180 @@ body {
   }
 
   .label {
-    @apply font-sans text-[11px] uppercase tracking-[0.18em] text-muted;
+    @apply font-sans text-xs tracking-[0.04em] text-muted;
   }
 }
 
-/* Used when the work grid is re-filtered. */
+/* ------------------------------------------------------------------ Hero */
+
+.hero-glow {
+  position: absolute;
+  inset: -20% -10% auto -10%;
+  height: 90%;
+  pointer-events: none;
+  background:
+    radial-gradient(
+      ellipse 55% 60% at 18% 20%,
+      rgba(242, 169, 59, 0.13),
+      transparent 70%
+    ),
+    radial-gradient(
+      ellipse 40% 45% at 85% 10%,
+      rgba(238, 234, 226, 0.05),
+      transparent 70%
+    );
+}
+
+/* One load sequence: headline lines rise out of a mask, the rest fade up. */
+.line {
+  display: block;
+  overflow: hidden;
+  /* Room for descenders so the mask never clips letters. */
+  padding-bottom: 0.08em;
+  margin-bottom: -0.08em;
+}
+
+.line-inner {
+  display: block;
+  animation: rise 0.95s var(--ease) both;
+}
+
+.fade-up {
+  animation: fadeUp 0.8s var(--ease) both;
+}
+
+@keyframes rise {
+  from {
+    transform: translate3d(0, 105%, 0);
+  }
+  to {
+    transform: none;
+  }
+}
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 14px, 0);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* Gentle scroll parallax. Values come from --sy (see Navbar). */
+.parallax-slow {
+  transform: translate3d(0, calc(var(--sy) * -0.05px), 0);
+}
+
+.parallax-fast {
+  transform: translate3d(0, calc(var(--sy) * -0.11px), 0);
+}
+
+/* --------------------------------------------------------- Timeline strip */
+
+.strip {
+  --clip-h: clamp(150px, 21vw, 232px);
+  position: relative;
+  border-top: 1px solid #2a2a30;
+  border-bottom: 1px solid #2a2a30;
+  background: rgba(18, 18, 21, 0.7);
+  overflow: hidden;
+}
+
+.strip-row {
+  position: relative;
+  overflow: hidden;
+  /* Space for the V1 / A1 gutter, so the track itself has no padding and
+     its -25% loop shift is exact. */
+  padding-left: 2.75rem;
+}
+
+.strip-gutter {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  z-index: 3;
+  display: flex;
+  width: 2.75rem;
+  align-items: center;
+  justify-content: center;
+  background: #0b0b0d;
+  border-right: 1px solid #2a2a30;
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  color: #8e8b85;
+}
+
+.track {
+  display: flex;
+  width: max-content;
+  animation: track-scroll 90s linear infinite;
+  will-change: transform;
+}
+
+.track-slow {
+  animation-duration: 140s;
+}
+
+/* The track holds four identical copies, so moving it -25% is exactly one
+   full period (no jump), and there is always content on very wide screens. */
+@keyframes track-scroll {
+  to {
+    transform: translate3d(-25%, 0, 0);
+  }
+}
+
+.clip {
+  position: relative;
+  flex: none;
+  height: var(--clip-h);
+  margin-right: 12px;
+  overflow: hidden;
+  border-radius: 3px;
+  border: 1px solid #2a2a30;
+  background: #17171b;
+}
+
+.clip-tall {
+  aspect-ratio: 9 / 16;
+}
+
+.clip-wide {
+  aspect-ratio: 16 / 9;
+}
+
+.playhead {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 34%;
+  z-index: 4;
+  width: 1px;
+  background: #f2a93b;
+  pointer-events: none;
+}
+
+.playhead::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -5px;
+  border-left: 5.5px solid transparent;
+  border-right: 5.5px solid transparent;
+  border-top: 8px solid #f2a93b;
+}
+
+.wave {
+  display: block;
+  flex: none;
+  color: rgba(238, 234, 226, 0.34);
+}
+
+/* ------------------------------------------------------- Work / viewer */
+
 @keyframes fadeIn {
   from {
     opacity: 0;
@@ -56,23 +243,63 @@ body {
   }
 }
 
+/* Used when the work grid is re-filtered. */
 .fade-in {
-  animation: fadeIn 0.45s cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation: fadeIn 0.45s var(--ease) both;
+}
+
+@keyframes overlayIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes panelIn {
+  from {
+    opacity: 0;
+    transform: translateY(18px) scale(0.985);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.viewer-overlay {
+  animation: overlayIn 0.25s ease both;
+}
+
+.viewer-panel {
+  animation: panelIn 0.4s var(--ease) both;
 }
 
 /* Scroll reveal: content is always in the DOM, only opacity/transform animate. */
 .reveal {
   opacity: 0;
-  transform: translateY(14px);
+  transform: translateY(18px);
   transition:
-    opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1),
-    transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+    opacity 0.8s var(--ease),
+    transform 0.8s var(--ease);
 }
 
 .reveal[data-visible="true"] {
   opacity: 1;
   transform: none;
 }
+
+/* Hide the scrollbar on the mobile episode rail but keep it scrollable. */
+.no-scrollbar {
+  scrollbar-width: none;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+/* --------------------------------------------------------- Reduced motion */
 
 @media (prefers-reduced-motion: reduce) {
   html {
@@ -86,10 +313,20 @@ body {
     transition: none;
   }
 
+  .track {
+    animation: none;
+  }
+
+  .parallax-slow,
+  .parallax-fast {
+    transform: none;
+  }
+
   *,
   *::before,
   *::after {
     animation-duration: 0.001ms !important;
+    animation-delay: 0ms !important;
     transition-duration: 0.001ms !important;
   }
 }
