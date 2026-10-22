@@ -5,10 +5,10 @@ export default function CourseSection() {
   return (
     <section className="shell py-10 md:py-12">
       <Reveal>
-        <div className="rounded-[4px] border border-line bg-card p-6 sm:p-8">
+        <div className="rounded-[6px] border border-line bg-raise p-6 sm:p-8">
           <div className="grid gap-6 md:grid-cols-12 md:gap-10">
             <div className="md:col-span-5">
-              <p className="label">Course Production</p>
+              <p className="text-xs font-medium text-accent">Course Production</p>
               <h2 className="mt-3 font-display text-2xl font-semibold tracking-[-0.02em] text-ink">
                 Educational Content
               </h2>

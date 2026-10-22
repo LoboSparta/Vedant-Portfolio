@@ -4,8 +4,8 @@ import { about, profile } from "@/data/site";
 
 export default function About() {
   return (
-    <section id="about" className="shell scroll-mt-24 py-14 md:py-20">
-      <SectionHeading label="About" title="About" />
+    <section id="about" className="shell scroll-mt-24 py-16 md:py-24">
+      <SectionHeading title="About" />
 
       <div className="mt-10 grid gap-8 md:mt-12 md:grid-cols-12 md:gap-10">
         <Reveal className="md:col-span-8">
@@ -22,7 +22,7 @@ export default function About() {
           <dl className="md:border-l md:border-line md:pl-10">
             <div className="border-t border-line py-4 md:border-t-0 md:pt-0">
               <dt className="label">Focus</dt>
-              <dd className="mt-2 text-sm text-ink">Short-form vertical video</dd>
+              <dd className="mt-2 text-sm text-ink">Short-form, ads and long-form podcasts</dd>
             </div>
             <div className="border-t border-line py-4">
               <dt className="label">Experience</dt>

@@ -51,12 +51,12 @@ export default function ProjectViewer({
       role="dialog"
       aria-modal="true"
       aria-label={`${project.title}, ${project.category}`}
-      className="fixed inset-0 z-50 overflow-y-auto bg-ink/80 px-3 py-4 backdrop-blur-sm sm:px-6 sm:py-8"
+      className="viewer-overlay fixed inset-0 z-50 overflow-y-auto bg-black/85 px-3 py-4 backdrop-blur-sm sm:px-6 sm:py-8"
       onClick={onClose}
     >
       <div
         onClick={(event) => event.stopPropagation()}
-        className="mx-auto w-full max-w-5xl rounded-[4px] border border-line bg-paper"
+        className="viewer-panel mx-auto w-full max-w-5xl rounded-[6px] border border-line bg-raise"
       >
         {/* Top bar */}
         <div className="flex items-center justify-between border-b border-line px-4 py-3 sm:px-6">
@@ -83,7 +83,7 @@ export default function ProjectViewer({
               type="button"
               onClick={onClose}
               aria-label="Close video"
-              className="ml-1 rounded-full border border-line px-4 py-1.5 text-sm text-ink transition-colors hover:border-ink"
+              className="ml-1 rounded-full border border-line px-4 py-1.5 text-sm text-ink transition-colors hover:border-accent hover:text-accent"
             >
               Close
             </button>
@@ -92,7 +92,7 @@ export default function ProjectViewer({
 
         <div className="grid gap-0 md:grid-cols-[minmax(0,1fr)_300px]">
           {/* Video — keeps its natural vertical ratio, never cropped. */}
-          <div className="flex items-center justify-center bg-ink p-3 sm:p-6">
+          <div className="flex items-center justify-center bg-black p-3 sm:p-6">
             <div className="relative aspect-[9/16] h-[58vh] max-h-[640px] w-auto max-w-full overflow-hidden rounded-[3px] bg-black">
               <iframe
                 key={project.id}
