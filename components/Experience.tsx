@@ -4,8 +4,8 @@ import { experience } from "@/data/site";
 
 export default function Experience() {
   return (
-    <section id="experience" className="shell scroll-mt-24 py-14 md:py-20">
-      <SectionHeading label="Experience" title="Experience" />
+    <section id="experience" className="shell scroll-mt-24 py-16 md:py-24">
+      <SectionHeading title="Experience" />
 
       <div className="mt-10 md:mt-12">
         {experience.map((item, index) => (
@@ -23,7 +23,7 @@ export default function Experience() {
               </div>
 
               <div className="md:col-span-8">
-                <p className="text-sm font-medium uppercase tracking-[0.14em] text-accent">
+                <p className="text-sm font-medium text-accent">
                   {item.role} · {item.type}
                 </p>
                 <p className="mt-4 max-w-2xl text-base leading-relaxed text-ink/85">
@@ -36,7 +36,7 @@ export default function Experience() {
                       key={point}
                       className="flex gap-3 text-sm leading-relaxed text-muted"
                     >
-                      <span aria-hidden="true" className="mt-2 h-px w-3 shrink-0 bg-line" />
+                      <span aria-hidden="true" className="mt-2 h-px w-3 shrink-0 bg-accent/60" />
                       <span>{point}</span>
                     </li>
                   ))}

@@ -16,7 +16,7 @@ export default function CategoryFilter({
 }: CategoryFilterProps) {
   return (
     <div
-      role="tablist"
+      role="group"
       aria-label="Filter work by category"
       className="flex flex-wrap items-center gap-2"
     >
@@ -27,19 +27,18 @@ export default function CategoryFilter({
           <button
             key={filter}
             type="button"
-            role="tab"
-            aria-selected={isActive}
+            aria-pressed={isActive}
             onClick={() => onChange(filter)}
-            className={`rounded-full border px-4 py-2 text-sm transition-colors duration-200 ${
+            className={`rounded-full border px-4 py-2 text-sm font-medium transition-colors duration-300 ease-editorial ${
               isActive
-                ? "border-ink bg-ink text-paper"
-                : "border-line bg-transparent text-muted hover:border-accent hover:text-ink"
+                ? "border-accent bg-accent text-paper"
+                : "border-line bg-transparent text-muted hover:border-ink/50 hover:text-ink"
             }`}
           >
             {filter}
             <span
-              className={`ml-2 text-[11px] ${
-                isActive ? "text-paper/60" : "text-muted/70"
+              className={`ml-2 text-[11px] font-normal ${
+                isActive ? "text-paper/70" : "text-muted/70"
               }`}
             >
               {counts[filter]}
