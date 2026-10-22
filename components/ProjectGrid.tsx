@@ -14,7 +14,7 @@ import {
   type Filter,
   type ResolvedProject,
 } from "@/data/projects";
-import { longFormCollection } from "@/data/longform";
+import { longFormCollection } from "../data/longform";
 
 export default function ProjectGrid() {
   const allProjects = useMemo(() => getProjects(), []);
