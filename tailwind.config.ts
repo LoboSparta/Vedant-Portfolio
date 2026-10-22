@@ -8,13 +8,26 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      /*
+       * Design tokens. Component class names (bg-paper, text-ink, …) are
+       * unchanged; only the values are new, which is what turns the whole
+       * site into the dark "edit suite" look.
+       *   paper  — page background (near-black)
+       *   raise  — slightly lifted surface (panels)
+       *   card   — thumbnails / chips
+       *   ink    — primary text (warm bone white)
+       *   muted  — secondary text
+       *   line   — hairlines and borders
+       *   accent — the one accent colour (amber, like a timeline marker)
+       */
       colors: {
-        paper: "#F5F3EF",
-        ink: "#171717",
-        muted: "#6B6B6B",
-        card: "#FFFFFF",
-        line: "#DEDBD5",
-        accent: "#8A8175",
+        paper: "#0B0B0D",
+        raise: "#121215",
+        card: "#17171B",
+        ink: "#EEEAE2",
+        muted: "#8E8B85",
+        line: "#2A2A30",
+        accent: "#F2A93B",
       },
       fontFamily: {
         sans: ["var(--font-body)", "system-ui", "sans-serif"],

@@ -3,8 +3,9 @@
 A personal portfolio website for **Vedant Thakur, Video Editor & Content Creator**.
 Built with Next.js (App Router), React, TypeScript and Tailwind CSS.
 
-The work is presented as vertical YouTube embeds — no video files are stored in
-this repository.
+The work is presented as YouTube embeds — vertical Reels and ads, plus a
+landscape long-form podcast collection. No video files are stored in this
+repository.
 
 ---
 
@@ -14,21 +15,22 @@ A single-page portfolio with these sections:
 
 | Section | What it does |
 | --- | --- |
-| Hero | Name, title, positioning line, two calls to action |
-| Selected Work | Featured projects in a large grid, the rest in a smaller grid, filtered by All / Reels / AI Ads |
+| Hero | Name, headline, positioning line, two calls to action, and an animated timeline strip built from the work |
+| Selected Work | Featured projects in a large grid, the rest in a smaller grid, filtered by All / Reels / AI Ads / Long-Form |
+| Long-Form collection | The Ranveer Show podcast episodes in a 16:9 player (inside Selected Work) |
 | Project viewer | Opens on click — full vertical video plus title, category, description, role and skills |
 | Experience | BeerBiceps SkillHouse and CreedStar Sports |
 | Educational Content | Course production work |
 | About | Short personal introduction |
 | Tools | Software and AI tools |
-| Contact | Email, LinkedIn, Instagram, YouTube |
+| Contact | Email, LinkedIn, Phone |
 
 Folder structure:
 
 ```
 app/          Page, layout, global styles, favicon, Open Graph image
 components/   Reusable UI components
-data/         All content — projects.ts and site.ts
+data/         All content — projects.ts, longform.ts and site.ts
 public/       Static files (put images here if you add any)
 ```
 
@@ -94,6 +96,13 @@ file.
 **Videos must be Public or Unlisted on YouTube** for the embed to play. Private
 videos will not load.
 
+### Long-form (landscape) episodes
+
+Open `data/longform.ts` and edit the `episodes` array. Add
+`{ id: "YOUTUBE_VIDEO_ID" }` for a new episode (it is labelled "Episode N"), or
+add `title: "…"` once you have confirmed a real title. The "Long-Form" filter
+and its count update automatically.
+
 ---
 
 ## 5. Change contact and social links
@@ -133,10 +142,17 @@ it locally at <http://localhost:3000> so you can check it before publishing.
 
 ## Other things worth knowing
 
-- **Colours and fonts** live in `tailwind.config.ts` and `app/globals.css`.
+- **Colours and fonts** live in `tailwind.config.ts` (colour tokens) and
+  `app/globals.css` (animations, hero strip, grain). The single accent colour
+  is `accent`.
+- **Motion** is plain CSS plus one small scroll handler in
+  `components/Navbar.tsx`. All of it is switched off for visitors who request
+  reduced motion.
 - **Favicon** is `app/icon.svg`. Replace that file to change it.
 - **Link preview image** is `app/opengraph-image.png` (1200×630). Replace it
-  with your own image using the same filename.
-- **Fonts** (Inter + Manrope) are loaded from Google Fonts in `app/layout.tsx`.
+  with your own image using the same filename. It contains text, so redo it if
+  you change the positioning line in `data/site.ts`.
+- **Fonts** (Bricolage Grotesque + Inter) are loaded from Google Fonts in
+  `app/layout.tsx`.
 - **Thumbnails** come straight from YouTube, so they update if you change a
   video's thumbnail.
