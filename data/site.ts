@@ -10,12 +10,19 @@
 export const profile = {
   name: "Vedant Thakur",
   title: "Video Editor & Content Creator",
+  /** The large statement under the name in the hero. */
+  headline: "Video editing shaped by pace, story and sound.",
+  /** The range of work, in plain words. */
   positioning:
-    "Short-form content · Advertising · Motion Graphics · Educational Content",
+    "Short-form Reels · AI-assisted ads · Long-form podcasts · Motion graphics · Educational content",
   location: "India",
   /** Alt text for the hero portrait (public/images/vedant-thakur.jpg). */
   portraitAlt: "Portrait of Vedant Thakur",
 } as const;
+
+/** Used for the page description, Open Graph and Twitter previews. */
+export const siteDescription =
+  "Video editor and content creator specializing in short-form Reels, AI-assisted ads, long-form podcast editing, motion graphics and educational content.";
 
 export const navLinks = [
   { label: "Work", href: "#work" },
@@ -87,9 +94,9 @@ export const courseWork = {
 export const about = {
   paragraphs: [
     "I started editing on my phone, cutting clips for social media because I wanted them to look better than they did. That turned into editing my own YouTube and vlog content, which is where I actually learned pacing, sound, and how much a single cut can change the way something feels.",
-    "That's roughly 2+ years of hands-on editing — personal and social work first, professional work after. Since December 2025 I've been a full-time Video Editor at BeerBiceps SkillHouse, working on short-form, advertising and educational content, and using AI tools where they genuinely speed the creative work up.",
+    "That's roughly 2+ years of hands-on editing — personal and social work first, professional work after. Since December 2025 I've been a full-time Video Editor at BeerBiceps SkillHouse, working across short-form, advertising and educational content, and using AI tools where they genuinely speed the creative work up.",
     "Alongside that I freelance with CreedStar Sports, a cricket academy, where I'm on the ground with the camera as well as behind the timeline — shooting, editing, finishing and publishing the content myself.",
-    "Most of my work lives in vertical video. I like the constraint: you get a few seconds and a small frame, so the cut, the sound and the text all have to earn their place.",
+    "A lot of my work lives in vertical video. I like the constraint: you get a few seconds and a small frame, so the cut, the sound and the text all have to earn their place. Long-form podcast editing is the opposite problem — pacing and continuity over a much longer runtime — and I enjoy both.",
   ],
 };
 
@@ -142,5 +149,5 @@ export const contact: ContactLink[] = [
   // with empty strings will render as a clearly marked placeholder instead.
 ];
 
-/** Used for metadata / Open Graph. Replace once you know the live URL. */
-export const siteUrl = "https://example.com";
+/** Used for metadata / Open Graph. Update this if you add a custom domain. */
+export const siteUrl = "https://vedant-portfolio-sigma.vercel.app/";

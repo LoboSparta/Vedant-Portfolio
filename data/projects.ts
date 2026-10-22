@@ -24,6 +24,7 @@
  *   https://youtube.com/shorts/pTprEeQBLis  ->  "pTprEeQBLis"
  */
 
+/** The category a single (vertical) project belongs to. */
 export type Category = "Reels" | "AI Ads";
 
 /** Controls how much visual weight a project gets in the grid. */
@@ -62,8 +63,12 @@ export interface ResolvedProject
   brand?: string;
 }
 
-/** The filter options shown above the work grid. */
-export const filters = ["All", "Reels", "AI Ads"] as const;
+/**
+ * The filter options shown above the work grid.
+ * "Long-Form" is not a project category: it shows the landscape podcast
+ * collection from data/longform.ts instead of the vertical project grid.
+ */
+export const filters = ["All", "Reels", "AI Ads", "Long-Form"] as const;
 export type Filter = (typeof filters)[number];
 
 /**
@@ -258,5 +263,7 @@ export function filterProjects(
   filter: Filter,
 ): ResolvedProject[] {
   if (filter === "All") return allProjects;
+  // Long-Form has no vertical projects; its episodes live in data/longform.ts.
+  if (filter === "Long-Form") return [];
   return allProjects.filter((project) => project.category === filter);
 }
