@@ -29,7 +29,7 @@ export default function LongFormCollection() {
   return (
     <div
       id="long-form"
-      className="scroll-mt-24 rounded-[6px] border border-line bg-raise p-4 sm:p-6 lg:p-8"
+      className="scroll-mt-24 min-w-0 max-w-full rounded-[6px] border border-line bg-raise p-4 sm:p-6 lg:p-8"
     >
       <div className="flex flex-col gap-3 md:flex-row md:items-end md:justify-between md:gap-10">
         <div>
@@ -45,10 +45,10 @@ export default function LongFormCollection() {
         </p>
       </div>
 
-      <div className="mt-6 grid gap-5 lg:mt-8 lg:grid-cols-12 lg:gap-8">
+      <div className="mt-6 grid min-w-0 gap-5 lg:mt-8 lg:grid-cols-12 lg:gap-8">
         {/* Main 16:9 player */}
-        <div className="lg:col-span-8">
-          <div className="relative aspect-video overflow-hidden rounded-[4px] border border-line bg-black">
+        <div className="min-w-0 lg:col-span-8">
+          <div className="relative aspect-video w-full min-w-0 overflow-hidden rounded-[4px] border border-line bg-black">
             {playing ? (
               <iframe
                 key={current.id}
@@ -112,7 +112,7 @@ export default function LongFormCollection() {
         </div>
 
         {/* Episode list: a swipeable row on phones, a stack beside the player on desktop */}
-        <div className="lg:col-span-4">
+        <div className="min-w-0 lg:col-span-4">
           <p className="label mb-3 hidden lg:block">All episodes</p>
           <ol className="no-scrollbar -mx-4 flex snap-x gap-3 overflow-x-auto px-4 pb-1 sm:-mx-6 sm:px-6 lg:mx-0 lg:flex-col lg:overflow-visible lg:px-0 lg:pb-0">
             {episodes.map((episode, index) => {
@@ -122,7 +122,7 @@ export default function LongFormCollection() {
               return (
                 <li
                   key={episode.id}
-                  className="w-[46%] max-w-[220px] shrink-0 snap-start lg:w-full lg:max-w-none"
+                  className="w-[46%] min-w-0 max-w-[220px] shrink-0 snap-start lg:w-full lg:max-w-none"
                 >
                   <button
                     type="button"
