@@ -177,14 +177,6 @@ export const projects: Project[] = [
     brand: "BeerBiceps SkillHouse",
   },
   {
-    id: "skillhouse-ai-ad-06",
-    title: "Video Editing Mastery — Course Promotional Ad",
-    category: "AI Ads",
-    youtubeId: "AU4Ybo40rao",
-    priority: "good",
-    brand: "BeerBiceps SkillHouse",
-  },
-  {
     // Originally filed under Reels — it is an advertisement, so it now sits in
     // AI Ads. Still published through the Dhaanessh.ai distribution page.
     id: "skillhouse-reel-06",
@@ -194,14 +186,6 @@ export const projects: Project[] = [
     priority: "good",
     brand: "Dhaanessh.ai",
     description: dhaaneshReelDescription,
-  },
-  {
-    id: "skillhouse-reel-01",
-    title: "AI Literacy — Motion Graphics Reel",
-    category: "Reels",
-    youtubeId: "pTprEeQBLis",
-    priority: "good",
-    brand: "BeerBiceps SkillHouse",
   },
   {
     id: "skillhouse-reel-04",
